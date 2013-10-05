@@ -2,7 +2,7 @@
 class BeautifulController < ApplicationController
   
   layout "beautiful_layout"
-
+before_filter :authenticate_user!, :except => [:dashboard]
   def dashboard
     render :layout => "beautiful_layout"
   end

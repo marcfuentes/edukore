@@ -1,4 +1,6 @@
 Edukore::Application.routes.draw do
+  devise_for :users, :controllers => {:registrations => "registrations"}
+
   match "admin/schools/search_and_filter" => "admin/schools#index", :via => [:get, :post], :as => :admin_search_schools
   namespace :admin do
   resources :schools do

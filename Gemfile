@@ -22,7 +22,7 @@ end
 
 
 gem 'jquery-rails', "2.0.1"
-gem 'beautiful_scaffold', '0.2.5'
+gem 'beautiful_scaffold', '0.2.7'
 gem 'carrierwave'
 gem 'mini_magick', '3.5.0'
 gem "font-awesome-rails"
@@ -60,3 +60,5 @@ gem "bb-ruby"
 gem "bluecloth"
 gem "rdiscount"
 gem "sanitize"
+gem "devise", "2.1.0"
+gem "cancan"

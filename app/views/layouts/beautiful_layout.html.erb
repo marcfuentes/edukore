@@ -41,7 +41,7 @@
             <ul class="nav pull-right">
               <li>
                 <!-- Beautiful_scaffold - Signin - Do not remove -->
-              </li>
+<%= render :partial => 'layouts/sign_in_sign_out' %>              </li>
             </ul>
           </div>
         </div>
@@ -86,7 +86,7 @@
     </div>
 
     <!-- Beautiful_scaffold - Modal - Do not remove -->
-
+    <%= render :partial => 'layouts/register_form' %>    <%= render :partial => 'layouts/forget_password' %>
     <script type="text/javascript">
       <% if not @opened_modal.blank? then %>
       $('<%= @opened_modal %>').modal('show');

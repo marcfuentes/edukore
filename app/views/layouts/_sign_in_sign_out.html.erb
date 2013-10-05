@@ -1,0 +1,19 @@
+<% if user_signed_in? then %>
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+    
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li><a href="#"><%= t(:profile, :default => "Profile") %></a></li>
+    <li class="divider"></li>
+    <li><%= link_to t(:sign_out, :default => "Sign Out"), destroy_user_session_path, :method => :delete %></li>
+  </ul>
+<% else %>
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+    <i class="icon-user"></i> <%= t(:login, :default => "Login") %>
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li><%= render :partial => "layouts/sign_in_form" %></li>
+  </ul>
+<% end %>
