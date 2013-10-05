@@ -1,0 +1,10 @@
+<!-- Beautiful Scaffold Menu Do Not Touch This -->
+      <li class="<%= "active" if params[:controller] == "admin/schools" %>">
+        <%= link_to t(:schools, :default => "schools").capitalize, admin_schools_path %>
+      </li>
+      <li class="<%= "active" if params[:controller] == "admin/courses" %>">
+        <%= link_to t(:courses, :default => "courses").capitalize, admin_courses_path %>
+      </li>
+      <li class="<%= "active" if params[:controller] == "admin/alumns" %>">
+        <%= link_to t(:alumns, :default => "alumns").capitalize, admin_alumns_path %>
+      </li>

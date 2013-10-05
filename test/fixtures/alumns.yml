@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  rut: 1
+  name: MyString
+  matern: MyString
+  patern: MyString
+  picture: MyString
+
+two:
+  rut: 1
+  name: MyString
+  matern: MyString
+  patern: MyString
+  picture: MyString

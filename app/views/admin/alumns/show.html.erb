@@ -1,0 +1,46 @@
+<article class='row-fluid'>
+    <div class="span12">
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="row-fluid">
+            <div class="picture span6 ">
+              <%= image_tag(@alumn.picture_url, :width => 200) if @alumn.picture.present? %>
+           </div> 
+
+<h2><%= t(:show, :default => "Show") %> <%= t(:alumn, :default => "alumn") %></h2>
+
+  
+  
+  <p>
+    <b><%= t(:name, :default => "Name") %>:</b>
+      <%= @alumn.name %>
+  </p>
+
+    <b><%= t(:patern, :default => "Patern") %>:</b>
+      <%= @alumn.patern %>
+  </p>
+
+
+
+  <p>
+    <b><%= t(:matern, :default => "Matern") %>:</b>
+      <%= @alumn.matern %>
+  </p>
+  <p>
+    <b><%= t(:patern, :default => "Patern") %>:</b>
+      <%= @alumn.patern %>
+  </p>
+
+  <p>
+    <b><%= t(:rut, :default => "Rut") %>:</b>
+      <%= @alumn.rut %>
+  </p>
+
+
+  
+
+<!-- Beautiful_scaffold - AddField - Field - Do not remove -->
+
+<%= link_to t(:edit, :default => "Edit"), edit_admin_alumn_path(@alumn), :class => "btn" %>
+<%= link_to t(:back, :default => "Back"), admin_alumns_path, :class => "btn" %>
+

@@ -1,0 +1,48 @@
+
+<%= form_for([:admin, @alumn ], :html => { :class => "form-horizontal" }) do |f| %>
+  <% if @alumn.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@alumn.errors.count, "error") %> prohibited this alumn from being saved:</h2>
+
+      <ul>
+        <% @alumn.errors.full_messages.each do |msg| %><li><%= msg %></li><% end %>
+      </ul>
+    </div>
+  <% end %>
+      <div class="control-group">
+      <%= f.label :rut, t(:rut, :default => "rut").capitalize, :class => "control-label" %>
+      <div class="controls">
+        <%= f.number_field :rut %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :name, t(:name, :default => "name").capitalize, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :name %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :matern, t(:matern, :default => "matern").capitalize, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :matern %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :patern, t(:patern, :default => "patern").capitalize, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :patern %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :picture, t(:picture, :default => "picture").capitalize, :class => "control-label" %>
+      <div class="controls">
+        <%= f.file_field :picture %>
+      </div>
+    </div>
+<!-- Beautiful_scaffold - AddField - Do not remove -->
+  <div class="form-actions">
+    <%= f.submit :class => "btn btn-primary" %>
+  </div>
+<% end %>
+
+

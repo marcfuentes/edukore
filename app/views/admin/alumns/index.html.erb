@@ -1,0 +1,157 @@
+<h2><%= t(:listing, :default => "Listing") %> <%= t(:alumns, :default => "alumns") %></h2>
+
+<p>
+  <%= link_to '<i class="icon-plus"></i>'.html_safe + t(:new, :default => "New") + ' ' + t(:alumn, :default => "alumn"), new_admin_alumn_path, :class => "btn" %>
+  <% if Alumn.columns.map(&:name).include?("alumn_id") then %>
+    <%= link_to '<i class="icon-folder-close"></i>'.html_safe + t(:treeview, :default => "Treeview") + ' ' + t(:alumn, :default => "alumn"), treeview_admin_alumns_path, :class => "btn" %>
+  <% end %>
+</p>
+
+<%= render :partial => "layouts/mass_inserting", :locals => { :namespace => 'admin', :model_name => 'alumn', :model_columns => ['rut','name','matern','patern','picture'] } %>
+
+<%# Set your scopes below (string in array) %>
+<% scopes = [] %>
+<% if not scopes.blank? then %>
+<div class="btn-toolbar">
+  <div class="btn-group">
+    <%= link_to "All (#{@alumn_scope_for_scope.count})", admin_alumns_path(:scope => ""), :class => "btn #{((session[:scope][:alumn].to_s == '') ? 'active' : '')}" %>
+    <% for scope in scopes %>
+    <%= link_to "#{scope} (#{@alumn_scope_for_scope.send(scope).count})", admin_alumns_path(:scope => scope), :class => "btn #{((session[:scope][:alumn].to_s == scope) ? 'active' : '')}" %>
+    <% end %>
+  </div>
+</div>
+<% end %>
+
+<div class="row-fluid">
+  <div class="span9">
+    <%= form_tag  batch_admin_alumns_path, :class => "form-inline" do %>
+      <div class="well well-small">
+        <label class="control-label" for="select01"><%= t(:batch, :default => "Batch") %></label>
+
+        <select id="select01" name="actionprocess">
+          <option value="destroy"><%= t(:destroy, :default => "Destroy") %></option>
+          
+          <!-- Beautiful_scaffold - AddField - Batch - Do not remove -->
+        </select>
+        <button class="btn" type="submit"><i class="icon-ok"></i> <%= t(:process, :default => "Process") %></button>
+      </div>
+
+      <%= render :partial => "layouts/modal_columns", :locals => { :model_name => "alumn", :model_columns => ['rut','name','matern','patern','picture','created_at','updated_at'] } %>
+
+      <table class="table table-striped table-bordered table-condensed">
+        <thead>
+          <tr>
+            <th>
+              <a class="" data-toggle="modal" href="#modal-columns" title="<%= t(:select_columns, :default => "Select Columns") %>" ><i class="icon-th-list"></i></a>
+            </th>
+            <th>
+              <%= check_box_tag :checkall, '' %>
+              <script type="text/javascript">
+                $('#checkall').click(function(){
+                  $('.cbbatch').attr('checked', ($(this).attr('checked') != undefined));
+                });
+              </script>
+            </th>
+            <th <%= visible_column("alumn", "rut") %> class="col-rut">
+  <%= sorting_header("alumn", "rut", "admin") %>
+</th>
+<th <%= visible_column("alumn", "name") %> class="col-name">
+  <%= sorting_header("alumn", "name", "admin") %>
+</th>
+<th <%= visible_column("alumn", "matern") %> class="col-matern">
+  <%= sorting_header("alumn", "matern", "admin") %>
+</th>
+<th <%= visible_column("alumn", "patern") %> class="col-patern">
+  <%= sorting_header("alumn", "patern", "admin") %>
+</th>
+<th <%= visible_column("alumn", "picture") %> class="col-picture">
+  <%= sorting_header("alumn", "picture", "admin") %>
+</th>
+
+            <!-- Beautiful_scaffold - AddField - Header - Do not remove -->
+            <th <%= visible_column("alumn", "created_at") %> class="col-created_at">
+              <%= sorting_header("alumn", "created_at", "admin") %>
+            </th>
+            <th <%= visible_column("alumn", "updated_at") %> class="col-updated_at">
+              <%= sorting_header("alumn", "updated_at", "admin") %>
+            </th>
+            <th colspan="3">
+              <label class="checkbox">
+                <%= check_box_tag :checkallelt, 'all' %>
+                <%= pluralize(@alumn_scope.count, "alumn") %>
+              </label>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @alumns.each do |alumn| %>
+          <tr class="line-<%= cycle("1","2") %>">
+            <td><%= alumn.id %></td>
+            <td><%= check_box_tag "ids[]",alumn.id, false, :class => 'cbbatch' %></td>
+              <td <%= visible_column("alumn", "rut") %> class="col-rut <%= align_attribute("integer") %>">
+      <%= alumn.rut %>
+  </td>
+  <td <%= visible_column("alumn", "name") %> class="col-name <%= align_attribute("string") %>">
+      <%= alumn.name %>
+  </td>
+  <td <%= visible_column("alumn", "matern") %> class="col-matern <%= align_attribute("string") %>">
+      <%= alumn.matern %>
+  </td>
+  <td <%= visible_column("alumn", "patern") %> class="col-patern <%= align_attribute("string") %>">
+      <%= alumn.patern %>
+  </td>
+  <td <%= visible_column("alumn", "picture") %> class="col-picture <%= align_attribute("string") %>">
+      <td><%= image_tag alumn.picture_url(:thumb) if alumn.picture? %></td>
+  </td>
+<!-- Beautiful_scaffold - AddField - Column - Do not remove -->
+            <td <%= visible_column("alumn", "created_at") %> class="col-created_at <%= align_attribute("datetime") %>">
+              <%= l(alumn.created_at, :format => :long) %>
+            </td>
+            <td <%= visible_column("alumn", "updated_at") %> class="col-updated_at <%= align_attribute("datetime") %>">
+              <%= l(alumn.updated_at, :format => :long) %>
+            </td>
+            <td><%= link_to '<i class="icon-search"></i>'.html_safe, admin_alumn_path(alumn) %></td>
+            <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_admin_alumn_path(alumn) %></td>
+            <td><%= link_to '<i class="icon-remove"></i>'.html_safe, admin_alumn_path(alumn), :confirm => t(:are_you_sure, :default => "Are you sure?"), :method => :delete %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div class="btn-toolbar">
+        <div class="btn-group">
+          <% clean_params %>
+          <%= will_paginate @alumns,
+                  :inner_window => 0,
+                  :outer_window => 0,
+                  :previous_label => t(:prev, :default => "Previous"),
+                  :next_label => t(:next, :default => "Next") %>
+
+        </div>
+        <div class="btn-group pull-right">
+          <%= link_to '<i class="icon-download"></i> CSV'.html_safe,  admin_alumns_path(:format => :csv), :class => "nopjax btn" %>
+          <%= link_to '<i class="icon-download"></i> XML'.html_safe,  admin_alumns_path(:format => :xml), :class => "nopjax btn" %>
+          <%= link_to '<i class="icon-download"></i> JSON'.html_safe, admin_alumns_path(:format => :json), :class => "nopjax btn" %>
+          <%= link_to '<i class="icon-download"></i> PDF'.html_safe,  admin_alumns_path(:format => :pdf), :class => "nopjax btn" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="span3">
+    <%= search_form_for @q, :url => admin_search_alumns_path, :html => { :class => "well well-small" }, :method => :post do |f| %>
+        <%= ransack_field("alumn", "rut", f, "Rut") %>
+  <%= ransack_field("alumn", "name", f, "Name") %>
+  <%= ransack_field("alumn", "matern", f, "Matern") %>
+  <%= ransack_field("alumn", "patern", f, "Patern") %>
+  <%= ransack_field("alumn", "picture", f, "Picture") %>
+
+  <%= ransack_field("alumn", "created_at", f, "Created At") %>
+  <%= ransack_field("alumn", "updated_at", f, "Updated At") %>
+  <%= ransack_field("alumn", "id", f, "Id") %>
+
+      <!-- Beautiful_scaffold - AddField - Search - Do not remove -->
+      <%= f.submit t(:filter, :default => "Filter"), :class => "btn btn-primary" %>
+      <%= link_to  t(:cancel, :default => "Cancel"), admin_alumns_path(:nosearch => "ok"), :class => "btn" %>
+    <% end %>
+  </div>
+</div>

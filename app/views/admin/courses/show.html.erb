@@ -1,0 +1,16 @@
+<h2><%= t(:show, :default => "Show") %> <%= t(:course, :default => "course") %></h2>
+
+  <p>
+    <b><%= t(:name, :default => "Name") %>:</b>
+      <%= @course.name %>
+  </p>
+  <p>
+    <b><%= t(:description, :default => "Description") %>:</b>
+      <%= @course.description %>
+  </p>
+
+<!-- Beautiful_scaffold - AddField - Field - Do not remove -->
+
+<%= link_to t(:edit, :default => "Edit"), edit_admin_course_path(@course), :class => "btn" %>
+<%= link_to t(:back, :default => "Back"), admin_courses_path, :class => "btn" %>
+
