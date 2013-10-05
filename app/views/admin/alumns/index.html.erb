@@ -68,7 +68,10 @@
   <%= sorting_header("alumn", "picture", "admin") %>
 </th>
 
-            <!-- Beautiful_scaffold - AddField - Header - Do not remove -->
+            <th <%= visible_column("alumn", "course") %> class="col-course">
+  <%= sorting_header("alumn", "course_id", "admin") %>
+</th>
+<!-- Beautiful_scaffold - AddField - Header - Do not remove -->
             <th <%= visible_column("alumn", "created_at") %> class="col-created_at">
               <%= sorting_header("alumn", "created_at", "admin") %>
             </th>
@@ -102,6 +105,13 @@
   </td>
   <td <%= visible_column("alumn", "picture") %> class="col-picture <%= align_attribute("string") %>">
       <td><%= image_tag alumn.picture_url(:thumb) if alumn.picture? %></td>
+  </td>
+  <td <%= visible_column("alumn", "course") %> class="col-course <%= align_attribute("references") %>">
+      <% if not alumn.course_id.nil? then %>
+        <%= link_to alumn.course.caption, admin_course_path(alumn.course_id) %>
+      <% else %>
+        <%= t(:any, :default => "Any") %>
+      <% end %>
   </td>
 <!-- Beautiful_scaffold - AddField - Column - Do not remove -->
             <td <%= visible_column("alumn", "created_at") %> class="col-created_at <%= align_attribute("datetime") %>">
@@ -149,7 +159,12 @@
   <%= ransack_field("alumn", "updated_at", f, "Updated At") %>
   <%= ransack_field("alumn", "id", f, "Id") %>
 
-      <!-- Beautiful_scaffold - AddField - Search - Do not remove -->
+        <%= ransack_field("alumn", "course_id", f, "Course") %>
+
+  <%= ransack_field("alumn", "created_at", f, "Created At") %>
+  <%= ransack_field("alumn", "updated_at", f, "Updated At") %>
+  <%= ransack_field("alumn", "id", f, "Id") %>
+<!-- Beautiful_scaffold - AddField - Search - Do not remove -->
       <%= f.submit t(:filter, :default => "Filter"), :class => "btn btn-primary" %>
       <%= link_to  t(:cancel, :default => "Cancel"), admin_alumns_path(:nosearch => "ok"), :class => "btn" %>
     <% end %>

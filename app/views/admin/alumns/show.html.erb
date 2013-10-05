@@ -39,6 +39,10 @@
 
   
 
+  <p>
+    <b><%= t(:course, :default => "Course") %>:</b>
+      <%= (@alumn.course.nil? ? "" : @alumn.course.caption) %>
+  </p>
 <!-- Beautiful_scaffold - AddField - Field - Do not remove -->
 
 <%= link_to t(:edit, :default => "Edit"), edit_admin_alumn_path(@alumn), :class => "btn" %>

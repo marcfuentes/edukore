@@ -1,4 +1,5 @@
 class Course < ActiveRecord::Base
+  has_many :alumns, :dependent => :nullify
   include BeautifulScaffoldModule      
 
   before_save :fulltext_field_processing
@@ -20,5 +21,5 @@ class Course < ActiveRecord::Base
   def caption
     (self["name"] || self["label"] || self["description"] || "##{id}")
   end
-  attr_accessible :description, :name
+  attr_accessible :alumn_ids, :description, :name
 end

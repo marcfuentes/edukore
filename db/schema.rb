@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131005035556) do
+ActiveRecord::Schema.define(:version => 20131005080842) do
 
   create_table "alumns", :force => true do |t|
     t.integer  "rut"
@@ -21,7 +21,10 @@ ActiveRecord::Schema.define(:version => 20131005035556) do
     t.string   "picture"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "course_id"
   end
+
+  add_index "alumns", ["course_id"], :name => "index_alumns_on_course_id"
 
   create_table "courses", :force => true do |t|
     t.string   "name"

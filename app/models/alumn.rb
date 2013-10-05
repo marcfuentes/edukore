@@ -1,4 +1,5 @@
 class Alumn < ActiveRecord::Base
+  belongs_to :course
   include BeautifulScaffoldModule      
 
   before_save :fulltext_field_processing
@@ -20,7 +21,7 @@ class Alumn < ActiveRecord::Base
   def caption
     (self["name"] || self["label"] || self["description"] || "##{id}")
   end
-  attr_accessible :matern, :name, :patern, :picture, :rut
+  attr_accessible :course_id, :matern, :name, :patern, :picture, :rut
 
   mount_uploader :picture, PictureUploader
 end
