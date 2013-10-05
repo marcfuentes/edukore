@@ -52,6 +52,9 @@
                 });
               </script>
             </th>
+<th <%= visible_column("alumn", "picture") %> class="col-picture">
+  <%= sorting_header("alumn", "picture", "admin") %>
+
             <th <%= visible_column("alumn", "rut") %> class="col-rut">
   <%= sorting_header("alumn", "rut", "admin") %>
 </th>
@@ -64,9 +67,7 @@
 <th <%= visible_column("alumn", "patern") %> class="col-patern">
   <%= sorting_header("alumn", "patern", "admin") %>
 </th>
-<th <%= visible_column("alumn", "picture") %> class="col-picture">
-  <%= sorting_header("alumn", "picture", "admin") %>
-</th>
+
 
             <th <%= visible_column("alumn", "course") %> class="col-course">
   <%= sorting_header("alumn", "course_id", "admin") %>
@@ -91,6 +92,10 @@
           <tr class="line-<%= cycle("1","2") %>">
             <td><%= alumn.id %></td>
             <td><%= check_box_tag "ids[]",alumn.id, false, :class => 'cbbatch' %></td>
+
+
+            <td <%= visible_column("alumn", "picture") %> class="col-picture <%= align_attribute("string") %>">
+      <%= image_tag alumn.picture_url(:thumb) if alumn.picture? %></td>
               <td <%= visible_column("alumn", "rut") %> class="col-rut <%= align_attribute("integer") %>">
       <%= alumn.rut %>
   </td>
@@ -103,9 +108,7 @@
   <td <%= visible_column("alumn", "patern") %> class="col-patern <%= align_attribute("string") %>">
       <%= alumn.patern %>
   </td>
-  <td <%= visible_column("alumn", "picture") %> class="col-picture <%= align_attribute("string") %>">
-      <td><%= image_tag alumn.picture_url(:thumb) if alumn.picture? %></td>
-  </td>
+  
   <td <%= visible_column("alumn", "course") %> class="col-course <%= align_attribute("references") %>">
       <% if not alumn.course_id.nil? then %>
         <%= link_to alumn.course.caption, admin_course_path(alumn.course_id) %>

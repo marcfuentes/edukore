@@ -25,6 +25,7 @@ gem 'jquery-rails', "2.0.1"
 gem 'beautiful_scaffold', '0.2.5'
 gem 'carrierwave'
 gem 'mini_magick', '3.5.0'
+gem "font-awesome-rails"
 
 group :development do
   gem 'better_errors'
